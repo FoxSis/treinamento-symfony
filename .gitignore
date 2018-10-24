@@ -1,0 +1,5 @@
+*/vendor/*
+*.log
+*/cache/*
+*/db-data/* 
+.DS_Store
