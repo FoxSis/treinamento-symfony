@@ -26,6 +26,11 @@ docker-compose run app php bin/console doctrine:schema:update --dump-sql
 docker-compose run app php bin/console doctrine:schema:update --force
 ```
 
+- conectando ao mysql via docker
+```
+docker-compose run db mysql -u aluno -p
+```
+
 ## Fixando o conteúdo
 - crie um serviço mysql no docker-compose
 - faça o _build_ das imagens docker
@@ -33,6 +38,7 @@ docker-compose run app php bin/console doctrine:schema:update --force
 - suba os containers e faça a validação da conexão e mapeamento
 - Crie as entidades do projeto de treinamento
 - atualize o banco de dados de acordo com as entidades mapeadas
+- conecte no mysql via docker e verifique se as tabelas foram criadas
 
 ## Recomendação de leitura
 - [Docker Hub](https://hub.docker.com/_/mysql/)
