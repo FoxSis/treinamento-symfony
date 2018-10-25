@@ -39,6 +39,7 @@ docker-compose run db mysql -u aluno -p
 - Crie as entidades do projeto de treinamento
 - atualize o banco de dados de acordo com as entidades mapeadas
 - conecte no mysql via docker e verifique se as tabelas foram criadas
+- exponha a porta 3306 do container db e conecte via ferramenta case
 
 ## Recomendação de leitura
 - [Docker Hub](https://hub.docker.com/_/mysql/)
