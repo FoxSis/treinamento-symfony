@@ -1,9 +1,10 @@
 # Aula 3
 
-## Crud - Create + Read + Update + Delete
+## Controller - CRUD
+
 - criando um crud
 ```
-docker-compose run app php bin/console make:crud Tipo
+docker-compose run app php bin/console make:crud
 ```
 
 - verificando serviços disponíveis

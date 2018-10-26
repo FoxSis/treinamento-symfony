@@ -31,6 +31,23 @@ docker-compose run app php bin/console doctrine:schema:update --force
 docker-compose run db mysql -u aluno -p
 ```
 
+- expondo a porta do banco de dados (3306) no docker-compose para conexão de ferramenta visual
+~~~yml
+#docker-compose.yml
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: treinamento
+      MYSQL_USER: aluno
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+~~~
+
 ## Fixando o conteúdo
 - crie um serviço mysql no docker-compose
 - faça o _build_ das imagens docker
@@ -47,3 +64,5 @@ docker-compose run db mysql -u aluno -p
 - [Symfony Doctrine configuration](https://symfony.com/doc/current/doctrine.html)
 - [Doctrine Best Pratices](https://www.doctrine-project.org/projects/doctrine-orm/en/current/reference/best-practices.html#best-practices)
 - [PHP PDO](http://php.net/pdo)
+- [DBeaver](https://dbeaver.io/download/)
+- [Mysql Workbench](https://dev.mysql.com/downloads/workbench/)
