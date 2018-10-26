@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Prioridade{% endblock %}
+
+{% block body %}
+    <h1>Create new Prioridade</h1>
+
+    {{ include('prioridade/_form.html.twig') }}
+
+    <a href="{{ path('prioridade_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tipo de chamado{% endblock %}
+
+{% block body %}
+    <style>
+        .grey {
+            background-color: grey;
+        }
+    </style>
+
+    <h1>Tipo index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descricao</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tipo in tipos %}
+            {% set class = 'write' %}
+            {% if loop.index is divisible by(2) %}
+                {% set class = 'grey' %}
+            {% endif %}
+            <tr class="{{ class }}">
+                <td>{{ tipo.id }}</td>
+                <td>{{ tipo.descricao|upper }}</td>
+                <td>
+                    <a href="{{ path('tipo_show', {'id': tipo.id}) }}">show</a>
+                    <a href="{{ path('tipo_edit', {'id': tipo.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tipo_new') }}">Create new</a>
+{% endblock %}

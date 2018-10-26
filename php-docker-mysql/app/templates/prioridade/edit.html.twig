@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Prioridade{% endblock %}
+
+{% block body %}
+    <h1>Edit Prioridade</h1>
+
+    {{ include('prioridade/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('prioridade_index') }}">back to list</a>
+
+    {{ include('prioridade/_delete_form.html.twig') }}
+{% endblock %}
