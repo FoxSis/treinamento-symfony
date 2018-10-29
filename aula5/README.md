@@ -26,6 +26,10 @@ docker-compose run app php bin/console make:migration
 ```
 docker-compose run app php bin/console doctrine:migrations:migrate
 ```
+- adicionando fixturesBundle como dependência em ambiente de desenvolvimento
+```
+composer require doctrine/doctrine-fixtures-bundle --dev
+```
 
 - criando Fixtures (dados default)
 ```
