@@ -72,14 +72,27 @@ docker-compose run app php bin/console doctrine:fixtures:load
 - Criar a entidade chamado contendo as FK's de Tipo, Prioridade e Status
 - Criar CRUD para chamado
 
-- Dados do Fixture
-
+### Fixture - Status
 Id | Descricao
 -- | ------------
 1  | Aberto
 2  | Em andamento
 3  | Fechado
 
+### Fixture - Prioridade
+Id | Peso | Descricao
+-- | ---- | ------------
+?  | 10   | Alta
+?  | 5    | Média
+?  | 1    | Baixa
+
+### Fixture - Tipo
+Id | Descricao
+-- | ------------
+?  | Incidente
+?  | Requisição
+?  | Dúvidas
+?  | Extração de dados
 
 
 ## Recomendação de leitura
