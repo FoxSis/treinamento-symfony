@@ -38,6 +38,33 @@ class Chamado
 }
 ~~~
 
+- Ordenando a execução dos fixtures
+~~~php
+// src/DataFixtures/ChamadoFixtures
+
+...
+
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+
+class ChamadoFixtures extends Fixture implements DependentFixtureInterface
+
+...
+
+    public function getDependencies()
+    {
+        return array(
+            PrioridadeFixtures::class,
+            StatusFixtures::class,
+            TipoFixtures::class,
+        );
+    }
+~~~
+
+- carregando os fixtures
+```
+docker-compose exec app php bin/console doctrine:fixtures:load
+```
+
 ## Fixando o conteúdo
 - Criar CRUD para a entidade chamado
 - Criar método __toString() nas entidades de apoio (Prioridade, Status e Tipo)
