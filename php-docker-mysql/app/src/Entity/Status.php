@@ -9,6 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Status
 {
+
+    const ABERTO = 1;
+    const EM_ANDAMENTO = 2;
+    const FECHADO = 3;
+
     /**
      * @ORM\Id()
      * @ORM\Column(type="integer")

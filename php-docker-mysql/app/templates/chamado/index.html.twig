@@ -8,12 +8,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>#</th>
                 <th>DataAbertura</th>
                 <th>DataAtualizacao</th>
                 <th>DataConclusao</th>
+                <th>Status</th>
                 <th>Assunto</th>
-                <th>Descricao</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,11 +24,12 @@
                 <td>{{ chamado.dataAbertura ? chamado.dataAbertura|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ chamado.dataAtualizacao ? chamado.dataAtualizacao|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ chamado.dataConclusao ? chamado.dataConclusao|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ chamado.status }}</td>
                 <td>{{ chamado.assunto }}</td>
-                <td>{{ chamado.descricao }}</td>
                 <td>
                     <a href="{{ path('chamado_show', {'id': chamado.id}) }}">show</a>
                     <a href="{{ path('chamado_edit', {'id': chamado.id}) }}">edit</a>
+                    <a href="{{ path('chamado_encerrar', {'id': chamado.id}) }}">encerrar</a>
                 </td>
             </tr>
         {% else %}

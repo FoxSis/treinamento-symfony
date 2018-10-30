@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Status;
 
 /**
  * @Route("/chamado")
@@ -85,6 +86,36 @@ class ChamadoController extends AbstractController
             $em->flush();
         }
 
+        return $this->redirectToRoute('chamado_index');
+    }
+
+    /**
+     * Encerrar chamado
+     *
+     * @Route("/encerrar/{id}", name="chamado_encerrar", methods="GET")
+     * @return Response
+     */
+    public function encerrarChamado(Chamado $chamado): Response 
+    {
+        try {
+            $manager = $this->getDoctrine()->getManager();
+
+            if ($chamado->getStatus()->getId() === Status::FECHADO) {
+                throw new \Exception("Este chamado já está encerrado");
+            }
+    
+            $chamado->setDataConclusao();
+            $chamado->setStatus(
+                $manager->getRepository(Status::class)->find(Status::FECHADO)
+            );
+    
+            $manager->persist($chamado);
+            $manager->flush();
+    
+            $this->addFlash('success', 'Chamado encerrado com sucesso');
+        } catch (\Exception $e) {
+            $this->addFlash('error', $e->getMessage());
+        }
         return $this->redirectToRoute('chamado_index');
     }
 }

@@ -108,9 +108,9 @@ class Chamado
         return $this->dataConclusao;
     }
 
-    public function setDataConclusao(?\DateTimeInterface $dataConclusao): self
+    public function setDataConclusao(): self
     {
-        $this->dataConclusao = $dataConclusao;
+        $this->dataConclusao = new \DateTime();
 
         return $this;
     }
