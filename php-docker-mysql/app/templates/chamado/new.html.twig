@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Chamado{% endblock %}
+
+{% block body %}
+    <h1>Create new Chamado</h1>
+
+    {{ include('chamado/_form.html.twig') }}
+
+    <a href="{{ path('chamado_index') }}">back to list</a>
+{% endblock %}

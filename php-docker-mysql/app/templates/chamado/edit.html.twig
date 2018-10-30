@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Chamado{% endblock %}
+
+{% block body %}
+    <h1>Edit Chamado</h1>
+
+    {{ include('chamado/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('chamado_index') }}">back to list</a>
+
+    {{ include('chamado/_delete_form.html.twig') }}
+{% endblock %}

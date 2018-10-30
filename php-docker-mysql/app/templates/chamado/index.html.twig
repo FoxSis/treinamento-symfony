@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chamado index{% endblock %}
+
+{% block body %}
+    <h1>Chamado index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DataAbertura</th>
+                <th>DataAtualizacao</th>
+                <th>DataConclusao</th>
+                <th>Assunto</th>
+                <th>Descricao</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chamado in chamados %}
+            <tr>
+                <td>{{ chamado.id }}</td>
+                <td>{{ chamado.dataAbertura ? chamado.dataAbertura|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ chamado.dataAtualizacao ? chamado.dataAtualizacao|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ chamado.dataConclusao ? chamado.dataConclusao|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ chamado.assunto }}</td>
+                <td>{{ chamado.descricao }}</td>
+                <td>
+                    <a href="{{ path('chamado_show', {'id': chamado.id}) }}">show</a>
+                    <a href="{{ path('chamado_edit', {'id': chamado.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('chamado_new') }}">Create new</a>
+{% endblock %}

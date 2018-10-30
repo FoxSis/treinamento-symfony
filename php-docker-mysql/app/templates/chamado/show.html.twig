@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chamado{% endblock %}
+
+{% block body %}
+    <h1>Chamado</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chamado.id }}</td>
+            </tr>
+            <tr>
+                <th>DataAbertura</th>
+                <td>{{ chamado.dataAbertura ? chamado.dataAbertura|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DataAtualizacao</th>
+                <td>{{ chamado.dataAtualizacao ? chamado.dataAtualizacao|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DataConclusao</th>
+                <td>{{ chamado.dataConclusao ? chamado.dataConclusao|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Assunto</th>
+                <td>{{ chamado.assunto }}</td>
+            </tr>
+            <tr>
+                <th>Descricao</th>
+                <td>{{ chamado.descricao }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('chamado_index') }}">back to list</a>
+
+    <a href="{{ path('chamado_edit', {'id': chamado.id}) }}">edit</a>
+
+    {{ include('chamado/_delete_form.html.twig') }}
+{% endblock %}
