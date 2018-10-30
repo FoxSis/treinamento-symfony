@@ -20,7 +20,8 @@ class PrioridadeController extends AbstractController
      */
     public function index(PrioridadeRepository $prioridadeRepository): Response
     {
-        return $this->render('prioridade/index.html.twig', ['prioridades' => $prioridadeRepository->findAll()]);
+        return $this->render('prioridade/index.html.twig', 
+        ['prioridades' => $prioridadeRepository->findAll()]);
     }
 
     /**
@@ -49,9 +50,13 @@ class PrioridadeController extends AbstractController
     /**
      * @Route("/{id}", name="prioridade_show", methods="GET")
      */
-    public function show(Prioridade $prioridade): Response
+    // public function show(Prioridade $prioridade): Response
+    public function show($id): Response
     {
-        return $this->render('prioridade/show.html.twig', ['prioridade' => $prioridade]);
+        $repository = $this->getDoctrine()->getRepository(Prioridade::class);
+        $prioridade = $repository->find($id);
+        return $this->render('prioridade/show.html.twig', 
+        ['prioridade' => $prioridade]);
     }
 
     /**

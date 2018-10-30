@@ -6,9 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ChamadoRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Chamado
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -17,19 +19,19 @@ class Chamado
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="data_abertura")
      */
-    private $data_abertura;
+    private $dataAbertura;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="data_atualizacao")
      */
-    private $data_atualizacao;
+    private $dataAtualizacao;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="data_conclusao")
      */
-    private $data_conclusao;
+    private $dataConclusao;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -59,6 +61,12 @@ class Chamado
      */
     private $status;
 
+    public function __construct()
+    {
+        $this->dataAbertura = new \DateTime();
+        $this->dataAtualizacao = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,36 +74,43 @@ class Chamado
 
     public function getDataAbertura(): ?\DateTimeInterface
     {
-        return $this->data_abertura;
+        return $this->dataAbertura;
     }
 
-    public function setDataAbertura(\DateTimeInterface $data_abertura): self
+    public function setDataAbertura(\DateTimeInterface $dataAbertura): self
     {
-        $this->data_abertura = $data_abertura;
+        $this->dataAbertura = $dataAbertura;
 
         return $this;
     }
 
     public function getDataAtualizacao(): ?\DateTimeInterface
     {
-        return $this->data_atualizacao;
+        return $this->dataAtualizacao;
     }
 
-    public function setDataAtualizacao(\DateTimeInterface $data_atualizacao): self
+    /**
+     * Seta a data de atualização do chamado
+     *
+     * @ORM\PreUpdate
+     * @param \DateTimeInterface $dataAtualizacao
+     * @return self
+     */
+    public function setDataAtualizacao(): self
     {
-        $this->data_atualizacao = $data_atualizacao;
+        $this->dataAtualizacao = new \DateTime();
 
         return $this;
     }
 
     public function getDataConclusao(): ?\DateTimeInterface
     {
-        return $this->data_conclusao;
+        return $this->dataConclusao;
     }
 
-    public function setDataConclusao(?\DateTimeInterface $data_conclusao): self
+    public function setDataConclusao(?\DateTimeInterface $dataConclusao): self
     {
-        $this->data_conclusao = $data_conclusao;
+        $this->dataConclusao = $dataConclusao;
 
         return $this;
     }

@@ -26,6 +26,11 @@ class Tipo
         return $this->id;
     }
 
+    public function __toString()
+    {
+        return $this->descricao;
+    }
+
     public function getDescricao(): ?string
     {
         return $this->descricao;

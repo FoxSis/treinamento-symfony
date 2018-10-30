@@ -20,6 +20,11 @@ class Status
      */
     private $descricao;
 
+    public function __toString()
+    {
+        return $this->descricao;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

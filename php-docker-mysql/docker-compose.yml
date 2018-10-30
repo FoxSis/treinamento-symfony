@@ -16,7 +16,7 @@ services:
       dockerfile: ./docker/nginx/Dockerfile
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./app:/var/www/html:ro
+      - ./app:/var/www/html:cached
     ports:
       - "8080:80"
   db:
