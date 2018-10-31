@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chamados fechados{% endblock %}
+
+{% block body %}
+    <h1>Chamados fechados</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>DataAbertura</th>
+                <th>DataConclusao</th>
+                <th>Status</th>
+                <th>Assunto</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chamado in chamados %}
+            <tr>
+                <td>{{ chamado.id }}</td>
+                <td>{{ chamado.dataAbertura ? chamado.dataAbertura|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ chamado.dataConclusao ? chamado.dataConclusao|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ chamado.status }}</td>
+                <td>{{ chamado.assunto }}</td>
+                <td>
+                    <a class="btn btn-secondary" href="{{ path('chamado_show', {'id': chamado.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('chamado_new') }}">Create new</a>
+{% endblock %}

@@ -113,6 +113,8 @@ class ChamadoController extends AbstractController
             $manager->flush();
     
             $this->addFlash('success', 'Chamado encerrado com sucesso');
+        } catch (\Doctrine\ORM\EntityNotFoundException $e) {
+            $this->addFlash('error', "Chamado não existe");
         } catch (\Exception $e) {
             $this->addFlash('error', $e->getMessage());
         }

@@ -14,21 +14,21 @@ class ChamadoFixtures extends Fixture implements DependentFixtureInterface
             [
                 'assunto' => 'Erro no cadastro de prioridade',
                 'descricao' => 'Não consigo cadastrar prioridade',
-                'status' => 1,
+                'status' => \App\Entity\Status::ABERTO,
                 'prioridade' => 10,
                 'tipo' => 'Incidente',
             ],
             [
                 'assunto' => 'Informação ao fechar chamado',
                 'descricao' => 'Solicito campo para texto da solução do chamado',
-                'status' => 2,
+                'status' => \App\Entity\Status::EM_ANDAMENTO,
                 'prioridade' => 5,
                 'tipo' => 'Requisição',
             ],
             [
                 'assunto' => 'Abertura de chamados',
                 'descricao' => 'Como faço para informar o usuário que abriu o chamado?',
-                'status' => 3,
+                'status' => \App\Entity\Status::FECHADO,
                 'prioridade' => 1,
                 'tipo' => 'Dúvidas',
             ],
@@ -45,6 +45,9 @@ class ChamadoFixtures extends Fixture implements DependentFixtureInterface
             $chamado->setStatus($status);
             $chamado->setTipo($tipo);
             $chamado->setPrioridade($prioridade);
+            if ($value['status'] === \App\Entity\Status::FECHADO) {
+                $chamado->setDataConclusao();
+            }
 
             $manager->persist($chamado);
         }

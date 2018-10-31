@@ -18,23 +18,36 @@ class ChamadoRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Chamado::class);
     }
-
-//    /**
-//     * @return Chamado[] Returns an array of Chamado objects
-//     */
-    /*
-    public function findByExampleField($value)
+    
+    /**
+     * @return Chamado[] Returns an array of Chamado objects
+     */
+    public function findChamadosDisponiveis()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->innerJoin('c.status', 's')
+            ->where('s.id <> :val')
+            ->setParameter('val', \App\Entity\Status::FECHADO)
+            ->orderBy('c.dataAbertura', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    /**
+     * @return Chamado[] Returns an array of Chamado objects
+     */
+    public function findChamadosFechados()
+    {
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.status', 's')
+            ->where('s.id = :val')
+            ->setParameter('val', \App\Entity\Status::FECHADO)
+            ->orderBy('c.dataAbertura', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Chamado
