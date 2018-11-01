@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Chamado;
 
 /**
@@ -31,14 +33,18 @@ class DefaultController extends AbstractController
      * @Route("/", name="chamados_disponiveis_index", methods="GET")
      * @return Response
      */
-    public function chamadosDisponiveis(): Response
+    public function chamadosDisponiveis(Request $request, PaginatorInterface $paginator): Response
     {
-        $chamados = $this->getDoctrine()
+        $list = $this->getDoctrine()
             ->getManager()
             ->getRepository(Chamado::class)
             ->findChamadosDisponiveis();
 
-        // \Doctrine\Common\Util\Debug::dump($chamados);die;
+        $chamados = $paginator->paginate(
+            $list,
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render(
             'default/chamadosDisponiveis.html.twig', 
@@ -52,12 +58,18 @@ class DefaultController extends AbstractController
      * @Route("/fechados", name="chamados_fechados_index", methods="GET")
      * @return Response
      */
-    public function chamadosFechados(): Response
+    public function chamadosFechados(Request $request, PaginatorInterface $paginator): Response
     {
-        $chamados = $this->getDoctrine()
+        $list = $this->getDoctrine()
             ->getManager()
             ->getRepository(Chamado::class)
             ->findChamadosFechados();
+
+        $chamados = $paginator->paginate(
+            $list,
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render(
             'default/chamadosFechados.html.twig', 

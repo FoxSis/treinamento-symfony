@@ -6,4 +6,6 @@
 - [Aula 4 - View](aula4/README.md)
 - [Aula 5 - Relations](aula5/README.md)
 - [Aula 6 - Lifecycle e Entity Constructor](aula6/README.md)
-- [Aula 7 - Repository](aula7/README.md)
+- [Aula 7 - Tratamento de Exceções](aula7/README.md)
+- [Aula 8 - Repository](aula7/README.md)
+- [Aula 9 - Paginação](aula7/README.md)

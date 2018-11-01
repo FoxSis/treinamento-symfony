@@ -25,13 +25,15 @@ class ChamadoRepository extends ServiceEntityRepository
     public function findChamadosDisponiveis()
     {
         return $this->createQueryBuilder('c')
+            ->select('partial c.{id, dataAtualizacao, dataAbertura, assunto}')
+            ->addSelect('s')
+            ->addSelect('p')
             ->innerJoin('c.status', 's')
+            ->innerJoin('c.prioridade', 'p')
             ->where('s.id <> :val')
             ->setParameter('val', \App\Entity\Status::FECHADO)
             ->orderBy('c.dataAbertura', 'DESC')
-            ->getQuery()
-            ->getResult()
-        ;
+            ->getQuery();
     }
 
     /**
@@ -40,24 +42,15 @@ class ChamadoRepository extends ServiceEntityRepository
     public function findChamadosFechados()
     {
         return $this->createQueryBuilder('c')
+            ->select('partial c.{id, dataConclusao, dataAbertura, assunto}')
+            ->addSelect('s')
+            ->addSelect('p')
             ->innerJoin('c.status', 's')
+            ->innerJoin('c.prioridade', 'p')
             ->where('s.id = :val')
             ->setParameter('val', \App\Entity\Status::FECHADO)
-            ->orderBy('c.dataAbertura', 'DESC')
+            ->orderBy('c.dataConclusao', 'DESC')
             ->getQuery()
-            ->getResult()
         ;
     }
-
-    /*
-    public function findOneBySomeField($value): ?Chamado
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

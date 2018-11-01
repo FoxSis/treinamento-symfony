@@ -8,12 +8,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
-                <th>DataAbertura</th>
-                <th>DataAtualizacao</th>
-                <th>Status</th>
-                <th>Assunto</th>
-                <th>actions</th>
+                <th>{{ knp_pagination_sortable(chamados, '#', 'c.id') }}</th>
+                <th>{{ knp_pagination_sortable(chamados, 'Abertura', 'c.dataAbertura') }}</th>
+                <th>{{ knp_pagination_sortable(chamados, 'Atualização', 'c.dataAtualizacao') }}</th>
+                <th>{{ knp_pagination_sortable(chamados, 'Status', 's.descricao') }}</th>
+                <th>{{ knp_pagination_sortable(chamados, 'Prioridade', 'p.descricao') }}</th>
+                <th>{{ knp_pagination_sortable(chamados, 'Assunto', 'c.assunto') }}</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
                 <td>{{ chamado.dataAbertura ? chamado.dataAbertura|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ chamado.dataAtualizacao ? chamado.dataAtualizacao|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ chamado.status }}</td>
+                <td>{{ chamado.prioridade }}</td>
                 <td>{{ chamado.assunto }}</td>
                 <td>
                     <a class="btn btn-secondary" href="{{ path('chamado_show', {'id': chamado.id}) }}">show</a>
@@ -37,6 +39,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <div class="navigation">
+        {{ knp_pagination_render(chamados) }}
+    </div>
     <a class="btn btn-primary" href="{{ path('chamado_new') }}">Create new</a>
 {% endblock %}
