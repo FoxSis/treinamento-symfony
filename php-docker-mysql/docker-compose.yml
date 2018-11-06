@@ -15,7 +15,6 @@ services:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
     volumes:
-      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
       - ./app:/var/www/html:cached
     ports:
       - "8080:80"
@@ -28,5 +27,8 @@ services:
       MYSQL_DATABASE: treinamento
       MYSQL_USER: aluno
       MYSQL_PASSWORD: 123456
-    ports:
-      - "3306:3306"
+  node:
+    image: node
+    volumes:
+      - ./app:/home/node/app:rw
+    working_dir: /home/node/app

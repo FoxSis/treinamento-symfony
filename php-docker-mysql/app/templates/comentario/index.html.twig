@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chamado {{ chamado.id }}{% endblock %}
+
+{% block body %}
+    <h1>Comentário do chamado: {{ chamado }}</h1>
+
+    <form>
+        <div class="form-group">
+            <label for="chamadoDescricao">Chamado</label>
+            <textarea class="form-control" id="chamadoDescricao" rows="3" disabled>{{ chamado.descricao }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="comentarioDescricao">Comentário</label>
+            <textarea name="comentario[descricao]" class="form-control" id="comentarioDescricao" rows="3"></textarea>
+        </div>
+    </form>
+{% endblock %}

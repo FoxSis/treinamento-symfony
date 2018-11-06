@@ -28,8 +28,9 @@
                 <td>{{ chamado.assunto }}</td>
                 <td>
                     <a class="btn btn-secondary" href="{{ path('chamado_show', {'id': chamado.id}) }}">show</a>
+                    <a class="btn btn-secondary" href="{{ path('comentario_new', {'id': chamado.id}) }}">comments</a>
                     <a class="btn btn-secondary" href="{{ path('chamado_edit', {'id': chamado.id}) }}">edit</a>
-                    <a class="btn btn-secondary" href="{{ path('chamado_encerrar', {'id': chamado.id}) }}">encerrar</a>
+                    <a class="btn btn-secondary" href="{{ path('chamado_encerrar', {'id': chamado.id}) }}">close</a>
                 </td>
             </tr>
         {% else %}

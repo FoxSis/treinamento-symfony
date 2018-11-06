@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,10 +63,21 @@ class Chamado
      */
     private $status;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="chamado")
+     */
+    private $comentarios;
+
     public function __construct()
     {
         $this->dataAbertura = new \DateTime();
         $this->dataAtualizacao = new \DateTime();
+        $this->comentarios = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->assunto;
     }
 
     public function getId(): ?int
@@ -171,6 +184,37 @@ class Chamado
     public function setStatus(?Status $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setChamado($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->contains($comentario)) {
+            $this->comentarios->removeElement($comentario);
+            // set the owning side to null (unless already changed)
+            if ($comentario->getChamado() === $this) {
+                $comentario->setChamado(null);
+            }
+        }
 
         return $this;
     }
