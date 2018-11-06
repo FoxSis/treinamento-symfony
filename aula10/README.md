@@ -23,6 +23,11 @@ docker-compose run node yarn install
 docker-compose run node yarn encore dev --watch
 ```
 
+- Habilitando modulo SASS
+```
+docker-compose run node yarn add --dev sass-loader node-sass
+```
+
 - Habilitando pré-processadores SASS/LESS
 ~~~js
 // webpack.config.js
@@ -46,13 +51,6 @@ docker-compose run node yarn add jquery --dev
 ```
 docker-compose run node yarn add popper.js --dev
 ```
-- Habilitando modulo SASS
-```
-
-```
-docker-compose run node yarn add --dev sass-loader node-sass
-```
-
 
 
 ## Fixando o conteúdo

@@ -38,6 +38,11 @@ class Comentario
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->descricao;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

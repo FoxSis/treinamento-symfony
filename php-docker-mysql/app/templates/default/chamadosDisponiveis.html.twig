@@ -5,10 +5,11 @@
 {% block body %}
     <h1>Chamados disponíveis</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(chamados, '#', 'c.id') }}</th>
+                <th>Coment.</th>
                 <th>{{ knp_pagination_sortable(chamados, 'Abertura', 'c.dataAbertura') }}</th>
                 <th>{{ knp_pagination_sortable(chamados, 'Atualização', 'c.dataAtualizacao') }}</th>
                 <th>{{ knp_pagination_sortable(chamados, 'Status', 's.descricao') }}</th>
@@ -21,16 +22,19 @@
         {% for chamado in chamados %}
             <tr>
                 <td>{{ chamado.id }}</td>
+                <td>
+                    <a class="btn btn-secondary" href="{{ path('comentario_new', {'id': chamado.id}) }}">{{ chamado.comentarios|length }}</a>
+                </td>
                 <td>{{ chamado.dataAbertura ? chamado.dataAbertura|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ chamado.dataAtualizacao ? chamado.dataAtualizacao|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ chamado.status }}</td>
                 <td>{{ chamado.prioridade }}</td>
                 <td>{{ chamado.assunto }}</td>
                 <td>
-                    <a class="btn btn-secondary" href="{{ path('chamado_show', {'id': chamado.id}) }}">show</a>
-                    <a class="btn btn-secondary" href="{{ path('comentario_new', {'id': chamado.id}) }}">comments</a>
-                    <a class="btn btn-secondary" href="{{ path('chamado_edit', {'id': chamado.id}) }}">edit</a>
-                    <a class="btn btn-secondary" href="{{ path('chamado_encerrar', {'id': chamado.id}) }}">close</a>
+                    <a class="btn btn-secondary" href="{{ path('chamado_show', {'id': chamado.id}) }}">{{ 'show'|trans }}</a>
+                    <a class="btn btn-secondary" href="{{ path('comentario_new', {'id': chamado.id}) }}">{{ 'comments'|trans }}</a>
+                    <a class="btn btn-secondary" href="{{ path('chamado_edit', {'id': chamado.id}) }}">{{ 'edit'|trans }}</a>
+                    <a class="btn btn-secondary" href="{{ path('chamado_encerrar', {'id': chamado.id}) }}">{{ 'close'|trans }}</a>
                 </td>
             </tr>
         {% else %}

@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Comentário do chamado: {{ chamado }}</h1>
 
-    <form>
+    <form method="post" action="{{ path('comentario_new', {'id':chamado.id}) }}">
         <div class="form-group">
             <label for="chamadoDescricao">Chamado</label>
             <textarea class="form-control" id="chamadoDescricao" rows="3" disabled>{{ chamado.descricao }}</textarea>
@@ -14,5 +14,6 @@
             <label for="comentarioDescricao">Comentário</label>
             <textarea name="comentario[descricao]" class="form-control" id="comentarioDescricao" rows="3"></textarea>
         </div>
+        <button type="submit" class="btn btn-primary">save</button>
     </form>
 {% endblock %}
