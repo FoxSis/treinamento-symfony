@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Knp\Component\Pager\PaginatorInterface;
 use App\Entity\Chamado;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * DefaultController
@@ -19,11 +20,12 @@ class DefaultController extends AbstractController
     /**
      * @Route("/default", name="default")
      */
-    public function index()
+    public function index(TranslatorInterface $translator)
     {
         return $this->render('default/index.html.twig', 
         [
             'aluno_name' => 'Rodrigo Régis',
+            'texto' => $translator->trans('Symfony is great'),
         ]);
     }
 

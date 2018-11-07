@@ -38,6 +38,7 @@ class ChamadoController extends AbstractController
             $em->persist($chamado);
             $em->flush();
 
+            $this->addFlash('success', 'chamado_new_success');
             return $this->redirectToRoute('chamado_index');
         }
 
@@ -66,6 +67,7 @@ class ChamadoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'chamado_edit_success');
             return $this->redirectToRoute('chamado_edit', ['id' => $chamado->getId()]);
         }
 

@@ -1,2 +1,11 @@
+# actions
 new: Novo
 show: Exibir
+comments: Comentários
+edit: Editar
+close: Fechar
+Symfony is great: Symfony é TOP
+
+# chamado
+chamado_new_success: Chamado cadastrado com sucesso
+chamado_edit_success: Chamado atualizado com sucesso
