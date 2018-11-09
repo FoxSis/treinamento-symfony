@@ -2,20 +2,38 @@
 
 namespace App\Controller;
 
+use App\Entity\Status;
 use App\Entity\Chamado;
 use App\Form\ChamadoType;
 use App\Repository\ChamadoRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\ChamadoService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Status;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/chamado")
  */
 class ChamadoController extends AbstractController
 {
+
+    private $chamadoService;
+
+    public function __construct(ChamadoService $chamadoService)
+    {
+        $this->chamadoService = $chamadoService;
+    }
+
+    /**
+     * @Route("/atribuir/{id}", name="chamado_atribuir", methods="GET")
+     */
+    public function atribuir(Request $request, Chamado $chamado): Response
+    {
+        $chamado = $this->chamadoService->atribuir($chamado, $this->getUser());
+        return $this->redirectToRoute('chamado_show', ['id'=> $chamado->getId()]);
+    }
+
     /**
      * @Route("/", name="chamado_index", methods="GET")
      */
@@ -122,4 +140,6 @@ class ChamadoController extends AbstractController
         }
         return $this->redirectToRoute('chamado_index');
     }
+
+    
 }

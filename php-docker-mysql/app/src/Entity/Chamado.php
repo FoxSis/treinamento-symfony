@@ -68,6 +68,11 @@ class Chamado
      */
     private $comentarios;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Usuario")
+     */
+    private $responsavel;
+
     public function __construct()
     {
         $this->dataAbertura = new \DateTime();
@@ -215,6 +220,18 @@ class Chamado
                 $comentario->setChamado(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getResponsavel(): ?Usuario
+    {
+        return $this->responsavel;
+    }
+
+    public function setResponsavel(?Usuario $responsavel): self
+    {
+        $this->responsavel = $responsavel;
 
         return $this;
     }

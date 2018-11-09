@@ -83,3 +83,4 @@ class UsuarioFixture extends Fixture
 - [Symfony Security](https://symfony.com/doc/current/security.html)
 - [Create form login](https://symfony.com/doc/current/security/form_login_setup.html)
 - [Symfony Configuration](https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration)
+- [Argon2](https://en.wikipedia.org/wiki/Argon2)

@@ -7,26 +7,6 @@
 docker-compose run app php bin/console make:crud
 ```
 
-- verificando serviços disponíveis
-```
-docker-compose run app php bin/console debug:autowiring
-```
-
-- logging 
-~~~php
-use Psr\Log\LoggerInterface
-// ...
-
-/**
- * @Route("/lucky/number/{max}")
- */
-public function number($max, LoggerInterface $logger)
-{
-    $logger->info('We are logging!');
-    // ...
-}
-~~~
-
 - flash message
 ~~~php
     $this->addFlash(
@@ -59,11 +39,9 @@ public function number($max, LoggerInterface $logger)
 - crie o crud da entidade Tipo
 - adicione flash message no sucesso das execuções
 - redirecione para a listagem (no sucesso da edição)
-- grave no log a descrição do tipo cadastrado (create)
 
 ## Recomendação de leitura
 - [Symfony Controller](https://symfony.com/doc/current/controller.html)
 - [Flash Messages](https://symfony.com/doc/current/controller.html#flash-messages)
 - [Redirecting](https://symfony.com/doc/current/controller.html#redirecting)
 - [Design Pattern - Singleton](https://pt.wikipedia.org/wiki/Singleton)
-- [Fetching Services](https://symfony.com/doc/current/controller.html#fetching-services)
