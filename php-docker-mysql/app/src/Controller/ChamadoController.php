@@ -30,8 +30,13 @@ class ChamadoController extends AbstractController
      */
     public function atribuir(Request $request, Chamado $chamado): Response
     {
-        $chamado = $this->chamadoService->atribuir($chamado, $this->getUser());
-        return $this->redirectToRoute('chamado_show', ['id'=> $chamado->getId()]);
+        try {
+            $chamado = $this->chamadoService->atribuir($chamado, $this->getUser());
+            $this->addFlash('success', 'chamado_atribuir_success');
+            return $this->redirectToRoute('chamado_show', ['id'=> $chamado->getId()]);
+        } catch (\Exception $e) {
+            $this->addFlash('error', $e->getMessage());
+        }
     }
 
     /**

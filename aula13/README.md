@@ -73,8 +73,6 @@ use App\Service\ChamadoService;
 public function atribuir(ChamadoService $chamadoService)
 {
     // de onde vem $chamado???
-    
-    $chamadoService = $messageGenerator->getHappyMessage();
     $chamado = $chamadoService->atribuir($chamado, $this->getUser());
     // ...
 }

@@ -10,6 +10,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ComentarioController extends AbstractController
 {
+
+    private $chamadoService;
+
+    public function __construct(\App\Service\ChamadoService $chamadoService)
+    {
+        $this->chamadoService = $chamadoService;
+    }
+
     /**
      * @Route("/comentario/{id}/chamado", name="comentario_new", methods="GET|POST")
      */
@@ -19,10 +27,7 @@ class ComentarioController extends AbstractController
             $comentario = new Comentario();
             $comentario->setChamado($chamado);
             $comentario->setDescricao($request->request->get('comentario')['descricao']);
-            
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($comentario);
-            $manager->flush();
+            $chamado = $this->chamadoService->adicionarComentario($comentario);
             
             return $this->redirectToRoute('chamado_show', ['id' => $chamado->getId()]);
         }
