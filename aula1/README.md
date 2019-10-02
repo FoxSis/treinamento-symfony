@@ -1,6 +1,13 @@
 # Aula 1
 
-## Instalando dependências
+
+## Instalando dependências (mac)
+- Faça download e instale o docker desktop
+
+## Instalando dependências (windos)
+- formate seu computador, instale linux e pule para a próxima etapa
+
+## Instalando dependências (linux debian based)
 
 - Instalando Git
 ```
