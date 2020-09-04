@@ -3,7 +3,7 @@
         "@symfony/webpack-encore": "^0.20.0",
         "bootstrap": "^4.3.1",
         "jquery": "^3.4.0",
-        "node-sass": "^4.10.0",
+        "node-sass": "^4.13.1",
         "popper.js": "^1.14.4",
         "sass-loader": "^7.1.0",
         "webpack-notifier": "^1.6.0"
